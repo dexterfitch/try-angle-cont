@@ -43,11 +43,15 @@ $(document).ready(function() {
     $('input#new-side2').val("");
     $('input#new-side3').val("");
 
-    $('ul#' + newTriangle.type() + '-triangles').append('<li><span class="tri"> [' +
-                                                        newTriangle.side1 + ', ' +
-                                                        newTriangle.side2 + ', ' +
-                                                        newTriangle.side3 + ']' +
-                                                        '</span></li>');
+    if(newTriangle.type() === "Not a triangle.") {
+      alert("Check your inputs, something's wrong!")
+    } else {
+      $('ul#' + newTriangle.type() + '-triangles').append('<li><span class="tri"> [' +
+                                                          newTriangle.side1 + ', ' +
+                                                          newTriangle.side2 + ', ' +
+                                                          newTriangle.side3 + ']' +
+                                                          '</span></li>');
+    }
 
   });
 });
