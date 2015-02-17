@@ -10,23 +10,43 @@
   <body>
     <div class="container">
       <h1>Triangle Identifier</h1>
-      <div class="form">
-        <form id="triangle-sides">
-          <div class="form-group">
-            <input id="side1" type="text" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <input id="side2" type="text" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <input id="side3" type="text" class="form-control" required>
-          </div>
-        </form>
+      <br>
+      <div class="col-xs-3">
+        <h4>Create new Triangle:</h4>
+        <div class="form">
+          <form id="triangle-sides">
+            <div class="form-group">
+              <input id="new-side1" type="text" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <input id="new-side2" type="text" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <input id="new-side3" type="text" class="form-control" required>
+            </div>
+            <button type="submit">Add</button>
+          </form>
+        </div>
       </div>
 
-      <div id="result">
-        <p><span class="triangle-type"></span></p>
+      <div class="col-xs-3">
+        <h4>Equilateral</h4>
+        <ul id="equilateral-triangles">
+        </ul>
       </div>
+
+      <div class="col-xs-3">
+        <h4>Isosceles</h4>
+        <ul id="isosceles-triangles">
+        </ul>
+      </div>
+
+      <div class="col-xs-3">
+        <h4>Scalene</h4>
+        <ul id="scalene-triangles">
+        </ul>
+      </div>
+
     </div>
   </body>
 </html>

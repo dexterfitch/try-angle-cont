@@ -1,35 +1,53 @@
-var triangleType = function(side1, side2, side3) {
-  var triangle = ""
-  if ((side1 === side2) && (side1 === side3)) {
-    triangle += "equilateral";
-  }
-  if (((side1 === side2) && (side1 !== side3)) || 
-      ((side2 === side3) && (side2 !== side1)) || 
-      ((side1 === side3) && (side1 !== side2))) {
-    triangle += "isosceles";
-  }
-  if ((side1 !== side2) && (side1 !== side3) && (side2 !== side3)) {
-    triangle += "scalene";
-  }
-
-  if (((side1 + side2) <= side3) || ((side1 + side3) <= side2) || ((side2 + side3) <= side1)) {
-    triangle = "Not a triangle.";
-  }
-  return triangle;
-};
-
 $(document).ready(function() {
-  $('input').keyup(function() {
-    var side1 = parseInt($('input#side1').val());
-    var side2 = parseInt($('input#side2').val());
-    var side3 = parseInt($('input#side3').val());
-    var triangle = triangleType(side1, side2, side3);
+  $('form').submit(function(event) {
+    event.preventDefault();
 
-    $('.triangle-type').text(triangle);
-    if (side1 && side2 && side3) {
+    var side1 = parseInt($('input#new-side1').val());
+    var side2 = parseInt($('input#new-side2').val());
+    var side3 = parseInt($('input#new-side3').val());
 
-    } else {
-      $('.triangle-type').text("Not yet a triangle.");
-    }
+    var newTriangle = { side1: side1,
+                     side2: side2,
+                     side3: side3,
+                     type: function() {
+                             var side1 = this.side1;
+                             var side2 = this.side2;
+                             var side3 = this.side3;
+                             var triangle = "";
+
+                             if ((side1 === side2) && (side1 === side3)) {
+                               triangle += "equilateral";
+                             }
+
+                             if (((side1 === side2) && (side1 !== side3)) ||
+                                 ((side2 === side3) && (side2 !== side1)) ||
+                                 ((side1 === side3) && (side1 !== side2))) {
+                               triangle += "isosceles";
+                             }
+
+                             if ((side1 !== side2) && (side1 !== side3) && (side2 !== side3)) {
+                               triangle += "scalene";
+                             }
+
+                             if (((side1 + side2) <= side3) ||
+                                ((side1 + side3) <= side2) ||
+                                ((side2 + side3) <= side1)) {
+                               triangle = "Not a triangle.";
+                             }
+                             return triangle;
+                           }
+                   };
+
+
+    $('input#new-side1').val("");
+    $('input#new-side2').val("");
+    $('input#new-side3').val("");
+
+    $('ul#' + newTriangle.type() + '-triangles').append('<li><span class="tri"> [' +
+                                                        newTriangle.side1 + ', ' +
+                                                        newTriangle.side2 + ', ' +
+                                                        newTriangle.side3 + ']' +
+                                                        '</span></li>');
+
   });
 });
